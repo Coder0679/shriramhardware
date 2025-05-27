@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shri Ram Hardware - Inventory</title>
+  <style>
+    body { font-family: Arial; margin: 20px; }
+    input, button { margin: 5px; }
+    table { border-collapse: collapse; width: 100%; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    img.prod-img { width: 40px; height: 40px; object-fit: cover; cursor: pointer; border-radius: 4px; }
+    #imgModal {
+      display:none; position:fixed; z-index:1000; left:0; top:0; width:100vw; height:100vh;
+      background:rgba(0,0,0,0.8); justify-content:center; align-items:center;
+    }
+    #imgModal img { max-width:90vw; max-height:90vh; border:5px solid #fff; border-radius:8px; }
+  </style>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <h2>Shri Ram Hardware - Inventory System</h2>
+  <h4>Product Add Kare</h4>
+  <input id="pname" placeholder="Product Name">
+  <input id="ppurchase" type="number" placeholder="Purchase Rate">
+  <input id="pprice" type="number" placeholder="Sell Rate">
+  <input id="pqty" type="number" placeholder="Qty">
+  <input id="pimg" type="file" accept="image/*">
+  <button onclick="addProduct()">Add Product</button>
+  
+  <h4>Products List</h4>
+  <input id="searchBox" placeholder="Search Product" onkeyup="searchProduct()">
+
+  <table id="prodTable">
+    <tr>
+      <th>Image</th>
+      <th>Name</th>
+      <th>Purchase</th>
+      <th>Sell</th>
+      <th>Profit</th>
+      <th>Total Qty</th>
+      <th>Remaining</th>
+      <th>Actions</th>
+    </tr>
+  </table>
+
+  <h4>
+    Sales History
+    <button onclick="exportSalesToCSV()">Export Sales to Excel</button>
+    <input type='date' id='filterDate' onchange='filterSales()' style='margin-left:20px'>
+    <input type='month' id='filterMonth' onchange='filterSales()'>
+    <button onclick="clearSales()" style="background:#e74c3c;color:#fff;border:none;padding:6px 12px;border-radius:4px;cursor:pointer;">
+      Clear History
+    </button>
+  </h4>
+
+  <div id='totalProfit' style='font-weight:bold; margin:10px 0; color:#27ae60;'></div>
+  <table id="salesTable">
+    <tr><th>Name</th><th>Qty</th><th>Price</th><th>Date/Time</th><th>Payment</th></tr>
+  </table>
+
+  <div id="imgModal" onclick="closeModal()">
+    <img id="modalImg" src="">
+  </div>
+  <script src=/script.js></script>
+</body>
+</html>
